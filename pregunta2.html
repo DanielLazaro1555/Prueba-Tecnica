@@ -11,20 +11,31 @@
 
 <body>
 
-  <div class="container">
-    <div class="jumbotron">
-      <h1 class="display-4">Consulta de DNI</h1>
-      <p class="lead">Ingrese el número de DNI y haga clic en Consultar</p>
-
-      <div class="form-group">
-        <label for="dniInput">Número de DNI:</label>
-        <input type="text" class="form-control" id="dniInput" placeholder="Ingrese el DNI">
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Ejercicio 2</h5>
+        <p class="card-text">
+          Ejercicio2: Realizar una hoja de consulta DNI. Se ingresará el DNI en un campo; al terminar de ingresar el
+          número DNI, debe realizar una búsqueda. Si la búsqueda del DNI es correcta, se completan los campos: NOMBRES,
+          APELLIDOS, DNI. Si la búsqueda es incorrecta, indica que el número de DNI es inválido. Utilizar todo lo
+          disponible para darle una buena vista y legibilidad en el código fuente. Entregar hoy 21/12/2023 hasta las
+          20:00 hrs. Enviar en una carpeta comprimida el código. Si tienen un repositorio en línea para revisarlo,
+          enviar el link. Slds. Se brindará acceso a una consulta API de DNI que tendrá un token: URL DE CONSULTA
+          https://api.apis.net.pe/v1/dni?numero=46027897 TOKEN.
+        </p>
       </div>
-      <button class="btn btn-primary" onclick="consultarDNI()">Consultar</button>
-      <a href="index.html" class="btn btn-secondary ml-2">Pregunta 1</a>
-
-      <div id="resultado" class="mt-4"></div>
     </div>
+
+    <div class="form-group">
+      <label for="dniInput">Número de DNI:</label>
+      <input type="text" class="form-control" id="dniInput" placeholder="Ingrese el DNI">
+    </div>
+    <button class="btn btn-primary" onclick="consultarDNI()">Consultar</button>
+    <a href="index.html" class="btn btn-secondary ml-2">Pregunta 1</a>
+
+    <div id="resultado" class="mt-4"></div>
+
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
