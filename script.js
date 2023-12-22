@@ -1,13 +1,10 @@
 function generarFechas() {
     var year = document.getElementById('yearInput').value;
-
     if (!year) {
         alert('Por favor, ingrese un año.');
         return;
     }
-
     var fechas = [];
-
     for (var i = 0; i < 12; i++) {
         var primerDia = new Date(year, i, 1);
         var ultimoDia = new Date(year, i + 1, 0);
@@ -18,7 +15,6 @@ function generarFechas() {
             ultimoDia: ultimoDia.toLocaleDateString()
         });
     }
-
     mostrarResultados(fechas);
 }
 

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consulta DNI</title>
-  <!-- Incluye la CDN de Bootstrap para acceder a sus estilos y componentes -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
   <div class="container">
@@ -20,59 +21,17 @@
         <input type="text" class="form-control" id="dniInput" placeholder="Ingrese el DNI">
       </div>
       <button class="btn btn-primary" onclick="consultarDNI()">Consultar</button>
+      <a href="index.html" class="btn btn-secondary ml-2">Pregunta 1</a>
 
       <div id="resultado" class="mt-4"></div>
     </div>
   </div>
 
-  <!-- Incluye la CDN de jQuery y Bootstrap JS para funcionalidades adicionales -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="script2.js"></script>
 
-  <script>
-    function consultarDNI() {
-      const dni = document.getElementById('dniInput').value;
-      const apiUrl = `https://raw.githubusercontent.com/DanielLazaro1555/Prueba-Tecnica/main/bd.json`;
-  
-      fetch(apiUrl)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`Error de red - Código ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          // Verifica si el DNI del objeto coincide directamente con el DNI ingresado
-          const resultadoDNI = data.numeroDocumento === dni ? data : null;
-  
-          if (resultadoDNI) {
-            mostrarResultado(resultadoDNI);
-          } else {
-            mostrarError("Número de DNI no encontrado");
-          }
-        })
-        .catch(error => {
-          console.error('Error al realizar la consulta:', error);
-          mostrarError("Error al realizar la consulta");
-        });
-    }
-  
-    function mostrarResultado(data) {
-      const resultadoDiv = document.getElementById('resultado');
-      resultadoDiv.innerHTML = `
-        <p class="lead">Resultados:</p>
-        <p><strong>Nombres:</strong> ${data.nombres}</p>
-        <p><strong>Apellidos:</strong> ${data.apellidoPaterno} ${data.apellidoMaterno}</p>
-        <p><strong>DNI:</strong> ${data.numeroDocumento}</p>
-      `;
-    }
-  
-    function mostrarError(mensaje) {
-      const resultadoDiv = document.getElementById('resultado');
-      resultadoDiv.innerHTML = `<p class="text-danger">${mensaje}</p>`;
-    }
-  </script>
-  
 </body>
+
 </html>
