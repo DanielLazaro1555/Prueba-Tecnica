@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>Generador de Fechas</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Generador de Fechas</h1>
+        <!-- Tarjeta con Bootstrap -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ejercicio 1</h5>
+                <p class="card-text">
+                    Crear una función en la cual se ingrese el año y devuelva un array general, el cual contendrá 12
+                    arrays, uno por cada mes del año. El índice tiene que corresponder al número de mes. Cada uno de
+                    estos arrays tiene que contener dos valores: el primer valor será el primer día de cada mes, y el
+                    segundo valor será el último día de cada mes. Modificar la clave de los meses por su texto.
+                    <br>Ejemplo:
+                    [05] => [mayo].
+                </p>
+            </div>
+        </div>
         <form>
             <div class="form-group">
                 <label for="yearInput">Ingrese el año:</label>
@@ -17,11 +34,12 @@
             <button type="button" class="btn btn-primary" onclick="generarFechas()">Generar Fechas</button>
 
             <!-- Agrega el botón "Pregunta 2" con redirección a otra página -->
-            <button type="button" class="btn btn-secondary ml-2" onclick="redireccionarPagina()">Pregunta 2</button>
+            <a href="pagina2.html" class="btn btn-secondary ml-2">Pregunta 2</a>
         </form>
         <div id="resultados" class="mt-4"></div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
