@@ -1,10 +1,10 @@
 function consultarDNI() {
     // Obtener el número de DNI ingresado por el usuario
     const dni = document.getElementById('dniInput').value;
-
+  
     // Construir la URL de la API de consulta
     const apiUrl = `https://api.apis.net.pe/v1/dni?numero=${dni}`;
-
+  
     // Realizar la solicitud a la API utilizando fetch
     fetch(apiUrl)
       .then(response => response.json())
@@ -21,7 +21,7 @@ function consultarDNI() {
         mostrarError("Error al realizar la consulta");
       });
   }
-
+  
   function mostrarResultado(data) {
     // Mostrar los resultados en la interfaz
     const resultadoDiv = document.getElementById('resultado');
@@ -32,9 +32,10 @@ function consultarDNI() {
       <p><strong>DNI:</strong> ${data.dni}</p>
     `;
   }
-
+  
   function mostrarError(mensaje) {
     // Mostrar mensajes de error en la interfaz
     const resultadoDiv = document.getElementById('resultado');
     resultadoDiv.innerHTML = `<p class="text-danger">${mensaje}</p>`;
   }
+  
