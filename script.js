@@ -50,3 +50,8 @@ function mostrarResultados(fechas) {
         resultadosDiv.innerHTML += tarjetaHTML;
     });
 }
+
+function redireccionarPagina() {
+    // Cambia la URL a la que deseas redirigir
+    window.location.href = "index2.html";
+}
