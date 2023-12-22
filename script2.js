@@ -1,33 +1,40 @@
-function buscarDNI() {
-    var dni = document.getElementById("dniInput").value;
+function consultarDNI() {
+    // Obtener el número de DNI ingresado por el usuario
+    const dni = document.getElementById('dniInput').value;
 
-    if (!/^\d{8}$/.test(dni)) {
-        document.getElementById("result").innerHTML = "Número de DNI inválido. Debe tener 8 dígitos.";
-        return;
-    }
+    // Construir la URL de la API de consulta
+    const apiUrl = `https://api.apis.net.pe/v1/dni?numero=${dni}`;
 
-    var resultadoBusqueda = buscarEnBaseDeDatos(dni);
-
-    if (resultadoBusqueda) {
-        document.getElementById("result").innerHTML = "Búsqueda exitosa:<br>Nombres: " + resultadoBusqueda.nombres + "<br>Apellidos: " + resultadoBusqueda.apellidos + "<br>DNI: " + resultadoBusqueda.dni;
-    } else {
-        document.getElementById("result").innerHTML = "Número de DNI no encontrado.";
-    }
-}
-
-function buscarEnBaseDeDatos(dni) {
-    var baseDeDatos = {
-        "12345678": {
-            nombres: "Juan",
-            apellidos: "Pérez",
-            dni: "12345678"
-        },
-        "87654321": {
-            nombres: "María",
-            apellidos: "Gómez",
-            dni: "87654321"
+    // Realizar la solicitud a la API utilizando fetch
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        // Verificar si la respuesta contiene información válida
+        if (data.success) {
+          // Mostrar los resultados en la interfaz
+          mostrarResultado(data);
+        } else {
+          mostrarError("Número de DNI inválido");
         }
-    };
+      })
+      .catch(error => {
+        mostrarError("Error al realizar la consulta");
+      });
+  }
 
-    return baseDeDatos[dni];
-}
+  function mostrarResultado(data) {
+    // Mostrar los resultados en la interfaz
+    const resultadoDiv = document.getElementById('resultado');
+    resultadoDiv.innerHTML = `
+      <p class="lead">Resultados:</p>
+      <p><strong>Nombres:</strong> ${data.nombres}</p>
+      <p><strong>Apellidos:</strong> ${data.apellidos}</p>
+      <p><strong>DNI:</strong> ${data.dni}</p>
+    `;
+  }
+
+  function mostrarError(mensaje) {
+    // Mostrar mensajes de error en la interfaz
+    const resultadoDiv = document.getElementById('resultado');
+    resultadoDiv.innerHTML = `<p class="text-danger">${mensaje}</p>`;
+  }
