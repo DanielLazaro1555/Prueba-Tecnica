@@ -21,7 +21,7 @@
       </div>
       <button class="btn btn-primary" onclick="consultarDNI()">Consultar</button>
       <!-- Agrega el botón "Pregunta 1" con redirección a otra página -->
-      <a href="index.html" class="btn btn-secondary ml-2">Pregunta 1</a>
+      <a href="pregunta1.html" class="btn btn-secondary ml-2">Pregunta 1</a>
 
       <div id="resultado" class="mt-4"></div>
     </div>
@@ -31,5 +31,41 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Bloque de script para la función consultarDNI() -->
+  <script>
+    function consultarDNI() {
+      const dni = document.getElementById('dniInput').value;
+      const apiUrl = `https://api.apis.net.pe/v1/dni?numero=${dni}`;
+
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            mostrarResultado(data);
+          } else {
+            mostrarError("Número de DNI inválido");
+          }
+        })
+        .catch(error => {
+          mostrarError("Error al realizar la consulta");
+        });
+    }
+
+    function mostrarResultado(data) {
+      const resultadoDiv = document.getElementById('resultado');
+      resultadoDiv.innerHTML = `
+        <p class="lead">Resultados:</p>
+        <p><strong>Nombres:</strong> ${data.nombres}</p>
+        <p><strong>Apellidos:</strong> ${data.apellidos}</p>
+        <p><strong>DNI:</strong> ${data.dni}</p>
+      `;
+    }
+
+    function mostrarError(mensaje) {
+      const resultadoDiv = document.getElementById('resultado');
+      resultadoDiv.innerHTML = `<p class="text-danger">${mensaje}</p>`;
+    }
+  </script>
 </body>
 </html>
